@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ## Data
 
-Test data is hosted on Hugging Face: ![Roxanne-WANG/MMedAgent-V2](https://huggingface.co/datasets/Roxanne-WANG/MMedAgent-V2).
+Test data is hosted on Hugging Face: [Roxanne-WANG/MMedAgent-V2](https://huggingface.co/datasets/Roxanne-WANG/MMedAgent-V2).
 
 Images is stored on Google Drive: [instruction_dataset_images](https://drive.google.com/drive/folders/1-AfZ5Ox1nDgs1hNvNyGBWSBX8cwC0xtu?usp=sharing)
 
