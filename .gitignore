@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.DS_Store
+.ipynb_checkpoints/
+
+# Data, weights and run outputs live outside git (Hugging Face / local)
+/data/
+/checkpoints/
+/outputs/
+/tool_instruct/
+/full_data/
+judge_cache.json
+*.jsonl
+*.zip
+*.safetensors
+*.bin
+*.pt
+*.pth
