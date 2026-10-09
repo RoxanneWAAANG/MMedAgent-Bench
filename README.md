@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="imgs/title_icon.jpg" alt="MMedAgent-Plus" width="150"/>
+</p>
+
 # MMedAgent-Bench: Benchmark and Evaluation for MMedAgent-Plus
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](http://www.apache.org/licenses/LICENSE-2.0)
@@ -5,9 +9,9 @@
 
 Evaluation code and dataset-construction scripts for **MMedAgent-Plus**, a multimodal medical tool-use agent that coordinates 18 specialist models across 12 medical tasks and 8 modalities. The benchmark covers three dialogue settings: single-tool multi-round, multi-tool multi-round, and multi-tool single-round. It measures both **tool orchestration** (choosing the right tools in the right order) and **final-answer quality** (turning tool outputs into a faithful, complete and concise response).
 
-[Paper (under review)] [[Model & Training: MMedAgent-Plus](https://github.com/RoxanneWAAANG/MMedAgent-Plus)] [[Dataset](https://huggingface.co/datasets/Roxanne-WANG/MMedAgent-V2)] [[Model](https://huggingface.co/ZihaoLin/mmedagent-nov24)]
+[Paper (in preparation)] [[Model & Training: MMedAgent-Plus](https://github.com/RoxanneWAAANG/MMedAgent-Plus)] [[🤗 Hugging Face: Model & Data](https://huggingface.co/MMedAgent)]
 
-> **Status:** partial release while the paper is under review. This release covers tool-calling evaluation, final-answer (LLM-as-a-judge) evaluation, and example dataset-construction scripts. Task-specific metrics, the remaining construction pipeline, the baseline scripts and the end-to-end execution harness will follow.
+> **Status:** partial release while the paper is under review. This release covers tool-calling evaluation, final-answer (LLM-as-a-judge) evaluation, classification metrics for some specialists, and example dataset-construction scripts. The remaining task-specific metrics, the remaining construction pipeline, the baseline scripts and the end-to-end execution harness will follow.
 
 <div align="center">
     <img src="imgs/overview.jpg" alt="MMedAgent-Plus overview" width="90%"/>
@@ -73,19 +77,21 @@ eval/
     recalculate_multi_tool_single_round_llava_cap.py
   final_answer/
     final_answer_eval.py       LLM-as-a-judge: faithfulness, completeness, conciseness
-  task_metrics/                to be released
+  task_metrics/
+    classification_metrics.py  accuracy, macro / weighted P, R, F1 (CONCH, BiomedCLIP)
+    conch_crc100k_predict.py   CONCH zero-shot predictions on CRC100K
 ```
 
 ## Data Download
 
 ### Benchmark Dataset
 
-The annotations are hosted on Hugging Face: [Roxanne-WANG/MMedAgent-V2](https://huggingface.co/datasets/Roxanne-WANG/MMedAgent-V2).
+All model weights, data and demo images are hosted in the [MMedAgent](https://huggingface.co/MMedAgent) organization on Hugging Face. The benchmark annotations are in [MMedAgent/mmedagent-plus-instruction-tuning](https://huggingface.co/datasets/MMedAgent/mmedagent-plus-instruction-tuning).
 
-A few demo images are available on Google Drive: [demo_images](https://drive.google.com/drive/folders/1-AfZ5Ox1nDgs1hNvNyGBWSBX8cwC0xtu?usp=sharing). They show the data format only; the full image set is not redistributed (see the note below).
+A few demo images are also available in the [MMedAgent](https://huggingface.co/MMedAgent) organization. They show the data format only; the full image set is not redistributed (see the note below).
 
 ```bash
-huggingface-cli download Roxanne-WANG/MMedAgent-V2 --repo-type dataset --local-dir ./data
+huggingface-cli download MMedAgent/mmedagent-plus-instruction-tuning --repo-type dataset --local-dir ./data
 export MMEDAGENT_DATA_ROOT=$(pwd)/data
 ```
 
@@ -197,7 +203,7 @@ For tools whose output is an image, mask or file (MedSAM, IterNet, HealthGPT, Un
 
 ### 3. Task-specific Metrics
 
-To be released. See [eval/task_metrics/README.md](eval/task_metrics/README.md) for the planned tools and metrics.
+Classification metrics for CONCH and BiomedCLIP are available; the remaining tools will follow. See [eval/task_metrics/README.md](eval/task_metrics/README.md) for usage and reference results.
 
 <!-- ## Citation
 If you find this benchmark or code useful for your research, please cite our paper:
